@@ -1,31 +1,42 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 )
 
 func main() {
-	fmt.Println("hello world")
-	reader := bufio.NewReader(os.Stdin)
-	text, _ := reader.ReadString('\n')
-	fmt.Println(text)
+	fmt.Println("Калькулятор")
 	calc()
 }
 
 func calc() {
 	for {
+		fmt.Println("Введите действие (+, -, *, /, закрыть )")
+		var operation string
+		fmt.Scan(&operation)
+		if operation == "закрыть"{
+			return
+		}
+
 		fmt.Println("Введите первое число")
 		var firstInt int
 		fmt.Scan(&firstInt)
-		fmt.Println(firstInt)
+
 		fmt.Println("Введите второе число число")
 		var secondInt int
 		fmt.Scan(&secondInt)
-		fmt.Println(secondInt)
-		fmt.Println(add(firstInt, secondInt))
-		return
+
+		fmt.Println("Ответ:")
+		switch operation {
+		case "+":
+			fmt.Println(add(firstInt, secondInt))
+		case "-":
+			fmt.Println(noAdd(firstInt, secondInt))
+		case "*":
+			fmt.Println(mult(firstInt, secondInt))
+		case "/":
+			fmt.Println(div(firstInt, secondInt))
+		}
 	}
 }
 
@@ -35,4 +46,12 @@ func add(x, y int) int {
 
 func noAdd(x, y int) int {
 	return x - y
+}
+
+func mult(x, y int) int {
+	return x * y
+}
+
+func div(x, y int) int {
+	return x / y
 }
